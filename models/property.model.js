@@ -8,6 +8,8 @@ const propertySchema = new Schema(
       unique: true,
       require: true
     },
+    imageUrl: String,
+
     description: {
         type: String,
         require: true

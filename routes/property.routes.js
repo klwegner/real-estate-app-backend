@@ -1,24 +1,10 @@
 const router = require("express").Router();
 const Property = require("../models/property.model");
 
-
-// async function handler(req, res) {
-//     const session = await getSession(req);
-   
-//     // Check if the user is authenticated
-//     if (!session) {
-//         console.log('there is no active session')
-//       res.status(401).json({
-//         error: 'User is not authenticated',
-//       })
-//       return
-//     }
-
-
-
 router.post("/addProperty", (req, res, next) => {
   const {
     name,
+    imageUrl,
     description,
     address,
     propertyType,
@@ -54,6 +40,7 @@ router.post("/addProperty", (req, res, next) => {
 
   return Property.create({
     name,
+    imageUrl,
     description,
     address,
     propertyType,
@@ -69,6 +56,7 @@ router.post("/addProperty", (req, res, next) => {
       if (createdProperty) {
         const {
             name,
+            imageUrl,
             description,
             address,
             propertyType,
@@ -101,7 +89,7 @@ router.post("/addProperty", (req, res, next) => {
     if (err.code === 11000) {
         res.status(400).json({ message: "A property with that key already exists."})
     } else {
-        console.error(error); // Log other unexpected errors
+        console.error(err);
         res.status(500).json({ message: "Internal server error." });
     }
 })
