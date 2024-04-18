@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const Property = require("../models/property.model");
+const { isAuthenticated } = require('../middleware/middleware.js')
 
-router.post("/addProperty", (req, res, next) => {
+
+router.post("/addProperty", isAuthenticated, (req, res, next) => {
   const {
     name,
     imageUrl,

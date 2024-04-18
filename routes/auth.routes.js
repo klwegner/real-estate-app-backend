@@ -2,7 +2,6 @@ const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 const router = require("express").Router();
 const jwt = require("jsonwebtoken");
-// const { isAuthenticated } = require('../middleware/middleware.js')
 
 router.post("/signup", (req, res, next) => {
   const { email, password } = req.body;
@@ -86,13 +85,13 @@ User.findOne({ email })
 
 })
 
-router.get('/verify', (req, res, next) =>{
-    // router.get('/verify', isAuthenticated, (req, res, next) =>{
+// router.get('/verify', (req, res, next) =>{
+//     // router.get('/verify', isAuthenticated, (req, res, next) =>{
 
-console.log('req.payload', req.payload);
-res.status(200).json(req.payload);
+// console.log('req.payload', req.payload);
+// res.status(200).json(req.payload);
 
-});
+// });
 
 module.exports = router;
 
