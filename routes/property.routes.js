@@ -3,6 +3,7 @@ const Property = require("../models/property.model");
 const { isAuthenticated } = require('../middleware/middleware.js')
 
 
+
 router.post("/addProperty", isAuthenticated, (req, res, next) => {
   const {
     name,
@@ -141,9 +142,10 @@ router.put("/properties/:propertyId", (req, res, next) => {
 //delete the given property
 router.delete("/properties/:propertyId", (req, res, next) => {
   const thePropertyId = req.params.propertyId;
-  Property.findByIdAndRemove(thePropertyId)
-    .then(() =>
-      res.json({ message: `City with ${cityId} is removed successfully.` })
+  Property.findByIdAndDelete(thePropertyId)
+    .then(() => {
+      res.json({ message: `Property with ${thePropertyId} is removed successfully.` })
+    }
     )
     .catch((err) => res.json(err));
 });
