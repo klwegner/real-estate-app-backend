@@ -8,8 +8,15 @@ const middleware  = require('./middleware/middleware')
 
 const app = express();
 
+const cors = require('cors');
+
+
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
+
+//enable CORS
+app.use(cors());
+
 
 // Contrary to the views version, all routes are controlled from the routes/index.js
 const allRoutes = require("./routes/index.routes");
