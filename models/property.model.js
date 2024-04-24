@@ -39,6 +39,10 @@ const propertySchema = new Schema(
         type: Number,
         require: true
     },
+    submittingUser: {
+      type: String,
+      require: true
+  },
     hasHOA: Boolean,
     amenitiesIncluded: String,
     inFloodZone: Boolean

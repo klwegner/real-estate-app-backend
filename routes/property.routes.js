@@ -18,6 +18,7 @@ router.post("/addProperty", isAuthenticated, (req, res, next) => {
     hasHOA,
     amenitiesIncluded,
     inFloodZone,
+    submittingUser
   } = req.body;
 
   if (
@@ -32,6 +33,9 @@ router.post("/addProperty", isAuthenticated, (req, res, next) => {
   ) {
     res.status(400).json({ message: "Please fill in required fields." });
     return;
+  }
+  if ( submittingUser === ""){
+    res.status(400).json({message: 'submitting user not available.'})
   }
 
 //   Property.findOne({ name }).then((foundProperty) => {
@@ -54,6 +58,7 @@ router.post("/addProperty", isAuthenticated, (req, res, next) => {
     hasHOA,
     amenitiesIncluded,
     inFloodZone,
+    submittingUser
   })
     .then((createdProperty) => {
       if (createdProperty) {
@@ -70,7 +75,8 @@ router.post("/addProperty", isAuthenticated, (req, res, next) => {
             hasHOA,
             amenitiesIncluded,
             inFloodZone,
-            _id
+            _id,
+            submittingUser
         } = createdProperty;
         const property = {
             name,
@@ -84,7 +90,8 @@ router.post("/addProperty", isAuthenticated, (req, res, next) => {
             hasHOA,
             amenitiesIncluded,
             inFloodZone,
-            _id
+            _id,
+            submittingUser
         };
         res.status(201).json({ property: property });
 }
